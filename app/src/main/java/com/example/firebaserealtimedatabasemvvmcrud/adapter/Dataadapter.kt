@@ -1,17 +1,16 @@
 package com.example.firebaserealtimedatabasemvvmcrud.adapter
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firebaserealtimedatabasemvvmcrud.MainActivity
 import com.example.firebaserealtimedatabasemvvmcrud.R
 import com.example.firebaserealtimedatabasemvvmcrud.model.Data
 
-class Dataadapter(private var data:List<Data>, private var itemClickListener: MainActivity):RecyclerView.Adapter<Dataadapter.ViewHolder>() {
+class Dataadapter(private var data:List<Data>, private var itemClickListener: ItemClickListener):RecyclerView.Adapter<Dataadapter.ViewHolder>() {
 
     interface ItemClickListener{
         fun onEditItemClick(data: Data)
@@ -27,8 +26,8 @@ class Dataadapter(private var data:List<Data>, private var itemClickListener: Ma
         val email = itemView.findViewById<TextView>(R.id.emailTxt)
         val subject = itemView.findViewById<TextView>(R.id.subjectTxt)
         val birthdate = itemView.findViewById<TextView>(R.id.birthdateTxt)
-        var edit = itemView.findViewById<TextView>(R.id.editBtn)
-        val delete = itemView.findViewById<TextView>(R.id.deleteBtn)
+        var edit = itemView.findViewById<ImageButton>(R.id.editBtn)
+        val delete = itemView.findViewById<ImageButton>(R.id.deleteBtn)
 
     }
     fun updateData(newData:List<Data>){
@@ -60,7 +59,7 @@ class Dataadapter(private var data:List<Data>, private var itemClickListener: Ma
             itemClickListener.onEditItemClick(item)
         }
         holder.delete.setOnClickListener {
-            itemClickListener.onDeleteClick(item)
+            itemClickListener.onDeleteItemClick(item)
         }
 
     }
